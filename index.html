@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><style id='brand'>:root{
+  --bg:#0b0b0c; --surface:#141417; --surface-2:#1c1c21;
+  --fg:#f5f5f7; --fg-muted:#a1a1aa; --border:#26262b;
+  --accent:#3b82f6; --accent-fg:#fff; --radius:14px; --maxw:1100px;
+  --font:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.section{padding:96px 0}
+.hero{padding:140px 0 90px;text-align:center}
+h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;letter-spacing:-.02em}
+h2{font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.01em}
+.muted{color:var(--fg-muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-fg);padding:14px 28px;border-radius:var(--radius);font-weight:600;text-decoration:none;border:0;cursor:pointer;transition:transform .15s ease,opacity .15s ease}
+.btn:hover{transform:translateY(-2px);opacity:.92}
+.btn-ghost{background:transparent;color:var(--fg);border:1px solid var(--border)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.grid{display:grid;gap:24px}
+@media(max-width:640px){.section{padding:64px 0}.hero{padding:96px 0 64px}}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meine Tasche – Deine Tasche. Dein Stil.</title>
+<style>
+  /* ── Brand overrides & category polish ── */
+  :root {
+    --bg: #FAF7F4;
+    --surface: #FFFFFF;
+    --fg: #1A1410;
+    --fg-muted: #7A6E67;
+    --accent: #B5895A;
+    --accent-dark: #8C6540;
+    --accent-light: #F2E8DC;
+    --border: #E8DDD4;
+    --radius: 16px;
+    --radius-sm: 8px;
+    --font-serif: 'Georgia', 'Times New Roman', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Utility */
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 96px 0; }
+  .muted { color: var(--fg-muted); }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,247,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    height: 68px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+
+  .nav-logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: normal;
+    letter-spacing: 0.04em;
+    color: var(--fg);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+  .nav-links a {
+    color: var(--fg-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--fg);
+    color: var(--bg) !important;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.05em !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: white !important; transform: translateY(-1px); }
+
+  /* Hero */
+  .hero-section {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
+    padding-top: 68px;
+  }
+
+  .hero-content {
+    padding: 80px 60px 80px 24px;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .hero-headline {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    line-height: 1.15;
+    font-weight: normal;
+    color: var(--fg);
+    margin-bottom: 20px;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--fg-muted);
+    line-height: 1.7;
+    max-width: 460px;
+    margin-bottom: 40px;
+  }
+
+  .btn-group { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+  .btn:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(181,137,90,0.35);
+  }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent;
+    color: var(--fg);
+    padding: 15px 28px;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: 1.5px solid var(--border);
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; gap: 36px; margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--fg);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--fg-muted); margin-top: 4px; letter-spacing: 0.03em; }
+
+  /* Hero Visual */
+  .hero-visual {
+    height: 100vh;
+    background: linear-gradient(135deg, #E8D5BC 0%, #D4B896 50%, #C4A882 100%);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-visual-inner {
+    position: relative;
+    width: 380px; height: 480px;
+  }
+
+  /* Illustrated bag SVG placeholder */
+  .bag-illustration {
+    width: 100%; height: 100%;
+  }
+
+  .floating-tag {
+    position: absolute;
+    background: white;
+    border-radius: 12px;
+    padding: 10px 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+    animation: float 3s ease-in-out infinite;
+  }
+  .floating-tag.tag-1 { top: 30px; right: -20px; animation-delay: 0s; }
+  .floating-tag.tag-2 { bottom: 80px; left: -30px; animation-delay: 1.5s; }
+  .floating-tag.tag-3 { bottom: 30px; right: 20px; animation-delay: 0.8s; }
+
+  .tag-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; margin-right: 6px; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .hero-visual-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+  }
+  .circle-1 { width: 300px; height: 300px; top: -80px; right: -80px; }
+  .circle-2 { width: 180px; height: 180px; bottom: 40px; left: 20px; }
+
+  /* Trust bar */
+  .trust-bar {
+    background: var(--fg);
+    padding: 20px 24px;
+  }
+  .trust-inner {
+    max-width: 1160px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+  .trust-icon { font-size: 1.1rem; }
+
+  /* Features Section */
+  .features-section { background: var(--surface); }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: normal;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--fg-muted);
+    max-width: 540px;
+    line-height: 1.7;
+  }
+
+  .features-header { margin-bottom: 64px; }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 30px;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    cursor: default;
+  }
+  .feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(181,137,90,0.12);
+    border-color: var(--accent);
+  }
+
+  .feature-icon {
+    width: 52px; height: 52px;
+    background: var(--accent-light);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    transition: background 0.25s;
+  }
+  .feature-card:hover .feature-icon { background: var(--accent); }
+
+  .feature-title {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .feature-desc { font-size: 0.9rem; color: var(--fg-muted); line-height: 1.65; }
+
+  /* Collections / Products teaser */
+  .collections-section { background: var(--bg); }
+
+  .collections-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    gap: 16px;
+    margin-top: 52px;
+  }
+
+  .collection-item {
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  .collection-item:hover { transform: scale(1.01); }
+  .collection-item:first-child { grid-row: 1 / 3; }
+
+  .coll-bg {
+    width: 100%; height: 100%;
+    display: flex; align-items: flex-end;
+    padding: 24px;
+    transition: transform 0.4s;
+    position: relative;
+  }
+  .collection-item:hover .coll-bg { transform: scale(1.04); }
+
+  .coll-bg-1 { background: linear-gradient(135deg, #C9A882 0%, #A87D54 100%); }
+  .coll-bg-2 { background: linear-gradient(135deg, #8E7B6E 0%, #6B5A50 100%); }
+  .coll-bg-3 { background: linear-gradient(135deg, #D4C4B0 0%, #B8A590 100%); }
+  .coll-bg-4 { background: linear-gradient(135deg, #2C2016 0%, #4A3525 100%); }
+  .coll-bg-5 { background: linear-gradient(135deg, #C4A882 0%, #9E7E5A 100%); }
+
+  .coll-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
+  }
+
+  .coll-info {
+    position: relative; z-index: 2;
+    color: white;
+  }
+  .coll-category { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.8; margin-bottom: 4px; }
+  .coll-name { font-family: var(--font-serif); font-size: 1.2rem; font-weight: normal; }
+  .coll-arrow {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px;
+    background: white;
+    border-radius: 50%;
+    color: var(--fg);
+    font-size: 0.85rem;
+    margin-left: 10px;
+    transition: background 0.2s, color 0.2s;
+    vertical-align: middle;
+  }
+  .collection-item:hover .coll-arrow { background: var(--accent); color: white; }
+
+  /* Bag decorative elements */
+  .bag-deco {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    font-size: 5rem;
+    opacity: 0.18;
+    user-select: none;
+    pointer-events: none;
+  }
+  .collection-item:first-child .bag-deco { font-size: 9rem; }
+
+  /* Trends Section */
+  .trends-section { background: var(--surface); }
+
+  .trends-flex {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .trend-visual {
+    background: linear-gradient(135deg, #F2E8DC 0%, #E8D5BC 100%);
+    border-radius: var(--radius);
+    height: 420px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .trend-tag-cloud {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    padding: 40px;
+    justify-content: center; align-items: center;
+  }
+
+  .ttag {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--fg);
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .ttag:hover { background: var(--accent); color: white; border-color: var(--accent); transform: scale(1.05); }
+  .ttag.hot { background: var(--accent-light); border-color: var(--accent); color: var(--accent-dark); font-weight: 600; }
+
+  .trend-content {}
+  .trend-list { margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
+
+  .trend-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 20px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .trend-item:hover { border-color: var(--accent); transform: translateX(4px); }
+
+  .trend-num {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--accent);
+    line-height: 1;
+    min-width: 32px;
+  }
+  .trend-info h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+  .trend-info p { font-size: 0.85rem; color: var(--fg-muted); line-height: 1.5; }
+
+  /* Pricing Section */
+  .pricing-section { background: var(--bg); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 52px;
+  }
+
+  .price-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    position: relative;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .price-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+
+  .price-card.featured {
+    background: var(--fg);
+    border-color: var(--fg);
+    color: white;
+  }
+  .price-card.featured .muted { color: rgba(255,255,255,0.6); }
+
+  .featured-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--accent);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+  }
+
+  .price-tier {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .price-card.featured .price-tier { color: rgba(255,255,255,0.7); }
+
+  .price-name {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  .price-amount {
+    display: flex; align-items: baseline; gap: 4px;
+    margin-bottom: 6px;
+  }
+  .price-currency { font-size: 1.1rem; color: var(--fg-muted); }
+  .price-card.featured .price-currency { color: rgba(255,255,255,0.6); }
+  .price-number { font-family: var(--font-serif); font-size: 3rem; line-height: 1; }
+  .price-period { font-size: 0.85rem; color: var(--fg-muted); }
+  .price-card.featured .price-period { color: rgba(255,255,255,0.6); }
+
+  .price-desc { font-size: 0.88rem; color: var(--fg-muted); margin-bottom: 28px; line-height: 1.6; }
+  .price-card.featured .price-desc { color: rgba(255,255,255,0.7); }
+
+  .price-divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .price-card.featured .price-divider { border-color: rgba(255,255,255,0.15); }
+
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .price-features li { display: flex; gap: 10px; font-size: 0.88rem; align-items: flex-start; }
+  .pf-check {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 700;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .price-card.featured .pf-check { background: rgba(255,255,255,0.15); color: white; }
+
+  .price-btn {
+    width: 100%;
+    display: flex; align-items: center; justify-content: center;
+    padding: 14px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+  .price-btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--fg);
+  }
+  .price-btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .price-btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+  .price-btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(181,137,90,0.4); }
+
+  .price-btn-white {
+    background: white;
+    color: var(--fg);
+  }
+  .price-btn-white:hover { background: var(--accent); color: white; transform: translateY(-2px); }
+
+  /* Testimonials */
+  .testimonials-section { background: var(--surface); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 52px;
+  }
+
+  .testimonial-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(181,137,90,0.1); }
+
+  .testi-stars { color: var(--accent); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 16px; }
+  .testi-text { font-size: 0.92rem; color: var(--fg); line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9rem; color: white;
+    flex-shrink: 0;
+  }
+  .av-1 { background: linear-gradient(135deg, #C9A882, #A87D54); }
+  .av-2 { background: linear-gradient(135deg, #8E7B6E, #6B5A50); }
+  .av-3 { background: linear-gradient(135deg, #B5895A, #8C6540); }
+
+  .testi-name { font-weight: 600; font-size: 0.88rem; }
+  .testi-location { font-size: 0.78rem; color: var(--fg-muted); }
+
+  /* CTA Banner */
+  .cta-banner {
+    background: var(--fg);
+    padding: 96px 24px;
+    text-align: center;
+  }
+  .cta-banner h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    color: white;
+    font-weight: normal;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .cta-banner h2 em { font-style: italic; color: var(--accent); }
+  .cta-banner p { color: rgba(255,255,255,0.65); font-size: 1rem; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  /* Footer */
+  footer {
+    background: var(--fg);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 60px 24px 32px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .footer-inner {
+    max-width: 1160px; margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand-name {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: white;
+    margin-bottom: 12px;
+  }
+  .footer-brand-name span { color: var(--accent); }
+
+  .footer-tagline { font-size: 0.88rem; line-height: 1.6; margin-bottom: 24px; }
+
+  .footer-social { display: flex; gap: 10px; }
+  .social-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    text-decoration: none;
+  }
+  .social-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(181,137,90,0.1); }
+
+  .footer-col h4 {
+    color: white;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col li a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.2s;
+  }
+  .footer-col li a:hover { color: var(--accent); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+  }
+  .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--accent); }
+
+  /* Scroll animations — default visible, JS enhances */
+  .reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero-section { grid-template-columns: 1fr; }
+    .hero-visual { height: 50vw; min-height: 300px; }
+    .hero-content { padding: 60px 24px; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .collections-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .collection-item:first-child { grid-row: auto; grid-column: 1 / -1; }
+    .trends-flex { grid-template-columns: 1fr; gap: 40px; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .features-grid { grid-template-columns: 1fr; }
+    .collections-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; flex-wrap: wrap; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Meine<span>Tasche</span></a>
+  <ul class="nav-links">
+    <li><a href="#kollektionen">Kollektionen</a></li>
+    <li><a href="#trends">Trends 2026</a></li>
+    <li><a href="#preise">Preise</a></li>
+    <li><a href="#kollektion" class="nav-cta">Shop entdecken</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero-section" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Neuheiten Saison 2026</div>
+    <h1 class="hero-headline">
+      Deine Tasche.<br>
+      Dein Stil. <em>Dein Statement.</em>
+    </h1>
+    <p class="hero-sub">
+      Entdecke handverlesene Taschen der Saison — von zeitlosen Klassikern bis zu den angesagtesten It-Bags 2026. Kuratiert mit Liebe zum Detail, für Frauen mit Persönlichkeit.
+    </p>
+    <div class="btn-group">
+      <a href="#kollektionen" class="btn">
+        Kollektion entdecken
+        <span style="font-size:1.1rem">→</span>
+      </a>
+      <a href="#trends" class="btn-ghost">
+        Trends 2026
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Modelle verfügbar</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">12k+</div>
+        <div class="stat-label">Zufriedene Kundinnen</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Kuratierte Qualität</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-visual-bg-circle circle-1"></div>
+    <div class="hero-visual-bg-circle circle-2"></div>
+    <div class="hero-visual-inner">
+      <!-- Illustrated bag -->
+      <svg class="bag-illustration" viewBox="0 0 380 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Bag body -->
+        <rect x="60" y="160" width="260" height="220" rx="28" fill="#8C6540" opacity="0.9"/>
+        <!-- Bag shadow -->
+        <rect x="70" y="370" width="240" height="20" rx="10" fill="#6B4C2A" opacity="0.4"/>
+        <!-- Bag flap -->
+        <path d="M60 160 Q60 80 190 80 Q320 80 320 160 Z" fill="#A87D54"/>
+        <!-- Flap edge detail -->
+        <path d="M75 160 Q75 95 190 95 Q305 95 305 160" stroke="#C9A882" stroke-width="2" fill="none" opacity="0.6"/>
+        <!-- Clasp -->
+        <rect x="170" y="150" width="40" height="26" rx="8" fill="#D4A870"/>
+        <rect x="178" y="158" width="24" height="10" rx="4" fill="#B5895A"/>
+        <!-- Handle left -->
+        <path d="M120 160 Q100 80 130 60 Q155 44 170 80 L170 100" stroke="#6B4C2A" stroke-width="12" fill="none" stroke-linecap="round"/>
+        <!-- Handle right -->
+        <path d="M260 160 Q280 80 250 60 Q225 44 210 80 L210 100" stroke="#6B4C2A" stroke-width="12" fill="none" stroke-linecap="round"/>
+        <!-- Front pocket -->
+        <rect x="100" y="230" width="180" height="100" rx="14" fill="#9E7250" opacity="0.7"/>
+        <!-- Pocket zipper -->
+        <line x1="115" y1="230" x2="265" y2="230" stroke="#C9A882" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="195" cy="230" r="6" fill="#D4A870"/>
+        <!-- Stitching details -->
+        <rect x="72" y="172" width="236" height="196" rx="22" stroke="#C9A882" stroke-width="1.5" fill="none" opacity="0.4" stroke-dasharray="8 5"/>
+        <!-- Decorative dots -->
+        <circle cx="160" cy="300" r="3" fill="#C9A882" opacity="0.5"/>
+        <circle cx="180" cy="300" r="3" fill="#C9A882" opacity="0.5"/>
+        <circle cx="200" cy="300" r="3" fill="#C9A882" opacity="0.5"/>
+        <circle cx="220" cy="300" r="3" fill="#C9A882" opacity="0.5"/>
+      </svg>
+
+      <div class="floating-tag tag-1">
+        <span class="tag-dot"></span>Neu: Cappuccino-Töne
+      </div>
+      <div class="floating-tag tag-2">
+        <span class="tag-dot"></span>Trend: Soft Structure
+      </div>
+      <div class="floating-tag tag-3">
+        <span class="tag-dot"></span>★ 4.9 / 5
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <span class="trust-icon">🚚</span>
+      <span>Kostenloser Versand ab 69 €</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">♻️</span>
+      <span>Nachhaltige Materialien</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">↩️</span>
+      <span>30 Tage kostenlose Retoure</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">🔒</span>
+      <span>Sicher &amp; verschlüsselt bezahlen</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">⭐</span>
+      <span>4.9 / 5 – über 2.400 Bewertungen</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section features-section" id="features">
+  <div class="container">
+    <div class="features-header">
+      <div class="section-label">Warum Meine Tasche</div>
+      <h2 class="section-title">Mehr als nur eine Tasche —<br>ein Erlebnis von Anfang an</h2>
+      <p class="section-sub">Wir glauben, dass jede Frau die perfekte Tasche verdient. Deshalb kuratieren wir mit Leidenschaft, Stil-Expertise und echtem Qualitätsanspruch.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">✦</div>
+        <div class="feature-title">Handverlesene Kollektionen</div>
+        <p class="feature-desc">Jedes Modell wird von unserem Stil-Team sorgfältig ausgewählt — nur das Beste aus internationalen und deutschen Designhäusern findet zu uns.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🌿</div>
+        <div class="feature-title">Nachhaltig &amp; bewusst</div>
+        <p class="feature-desc">Vegan-leather Alternativen, recycelte Stoffe und faire Produktionsbedingungen — Stil mit gutem Gewissen ist kein Widerspruch.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">💎</div>
+        <div class="feature-title">Premium-Qualität</div>
+        <p class="feature-desc">Von der Naht bis zum Verschluss — wir überprüfen jedes Detail. Langlebige Materialien, die den Alltag und die nächste Saison überstehen.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-title">Trend-Scout Service</div>
+        <p class="feature-desc">Unsere Redaktion verfolgt täglich die aktuellen Laufstege von Paris bis Mailand und bringt die It-Bags der Saison direkt zu dir.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">📦</div>
+        <div class="feature-title">Premium Unboxing</div>
+        <p class="feature-desc">Jede Bestellung wird in recycelbarem Premium-Packaging geliefert. Das Auspacken ist bereits ein Erlebnis für sich.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">💬</div>
+        <div class="feature-title">Persönliche Stil-Beratung</div>
+        <p class="feature-desc">Unsicher welche Tasche zu dir passt? Unser Stil-Team ist per Chat, E-Mail oder Instagram immer für dich da — kostenlos und ohne Druck.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section class="section collections-section" id="kollektionen">
+  <div class="container">
+    <div class="section-label">Kollektionen 2026</div>
+    <h2 class="section-title">Entdecke die Modelle der Saison</h2>
+
+    <div class="collections-grid">
+      <div class="collection-item reveal">
+        <div class="coll-bg coll-bg-1" style="height:100%">
+          <div class="coll-overlay"></div>
+          <div class="bag-deco">👜</div>
+          <div class="coll-info">
+            <div class="coll-category">Bestseller 2026</div>
+            <div class="coll-name">Structured Tote <span class="coll-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="collection-item reveal">
+        <div class="coll-bg coll-bg-2">
+          <div class="coll-overlay"></div>
+          <div class="bag-deco">👝</div>
+          <div class="coll-info">
+            <div class="coll-category">Mini-Trend</div>
+            <div class="coll-name">Micro Bag <span class="coll-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="collection-item reveal">
+        <div class="coll-bg coll-bg-3">
+          <div class="coll-overlay"></div>
+          <div class="bag-deco">🎒</div>
+          <div class="coll-info">
+            <div class="coll-category">Allrounder</div>
+            <div class="coll-name">Bucket Bag <span class="coll-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="collection-item reveal">
+        <div class="coll-bg coll-bg-4">
+          <div class="coll-overlay"></div>
+          <div class="bag-deco">💼</div>
+          <div class="coll-info">
+            <div class="coll-category">Office-Chic</div>
+            <div class="coll-name">Laptop Tote <span class="coll-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="collection-item reveal">
+        <div class="coll-bg coll-bg-5">
+          <div class="coll-overlay"></div>
+          <div class="bag-deco">👛</div>
+          <div class="coll-info">
+            <div class="coll-category">Evening Look</div>
+            <div class="coll-name">Clutch Statement <span class="coll-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRENDS 2026 -->
+<section class="section trends-section" id="trends">
+  <div class="container">
+    <div class="trends-flex">
+      <div class="trend-visual">
+        <div class="trend-tag-cloud">
+          <span class="ttag hot">Cappuccino & Caramel</span>
+          <span class="ttag">Cobalt Blue</span>
+          <span class="ttag hot">Soft Structure</span>
+          <span class="ttag">Metallic Accents</span>
+          <span class="ttag hot">Oversized Tote</span>
+          <span class="ttag">Woven Textures</span>
+          <span class="ttag">Forest Green</span>
+          <span class="ttag hot">Micro Bags</span>
+          <span class="ttag">Terracotta</span>
+          <span class="ttag">Chain Straps</span>
+          <span class="ttag hot">Barrel Bag</span>
+          <span class="ttag">Croc-Emboss</span>
+          <span class="ttag hot">Ecru & Off-White</span>
+          <span class="ttag">Buckle Details</span>
+          <span class="ttag">Deep Burgundy</span>
+        </div>
+      </div>
+
+      <div class="trend-content">
+        <div class="section-label">Trend-Report 2026</div>
+        <h2 class="section-title">Was die Saison<br>bestimmt</h2>
+        <p class="section-sub muted">Von den Laufstegen direkt zu dir — die Top-Trends der Taschen-Saison 2026 auf einen Blick.</p>
+
+        <div class="trend-list">
+          <div class="trend-item reveal">
+            <div class="trend-num">01</div>
+            <div class="trend-info">
+              <h4>Warm Neutrals dominieren</h4>
+              <p>Cappuccino, Caramel und Ecru sind die Farben des Jahres. Warm und zeitlos, zu jedem Look kombinierbar.</p>
+            </div>
+          </div>
+          <div class="trend-item reveal">
+            <div class="trend-num">02</div>
+            <div class="trend-info">
+              <h4>Strukturierte Formen kehren zurück</h4>
+              <p>Nach dem Soft-Bag-Boom setzen Designer 2026 wieder auf klare Linien und Structured Silhouettes.</p>
+            </div>
+          </div>
+          <div class="trend-item reveal">
+            <div class="trend-num">03</div>
+            <div class="trend-info">
+              <h4>Barrel Bag &amp; Micro-Format</h4>
+              <p>Der Barrel Bag ist die It-Bag 2026 — gleichzeitig bleiben Mini-Bags das Statement-Accessoire schlechthin.</p>
+            </div>
+          </div>
+          <div class="trend-item reveal">
+            <div class="trend-num">04</div>
+            <div class="trend-info">
+              <h4>Woven &amp; Texture Plays</h4>
+              <p>Gewebte Oberflächen, Raffia-Einschläge und Croc-Prägungen geben Taschen Tiefe und Handwerkscharakter.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing-section" id="preise">
+  <div class="container">
+    <div style="text-align:center; margin-bottom: 16px;">
+      <div class="section-label">Preispakete</div>
+      <h2 class="section-title">Für jedes Budget das Richtige</h2>
+      <p class="section-sub muted" style="margin: 0 auto;">Ob Einstieg oder Investment-Piece — bei Meine Tasche findest du kuratierte Qualität in jedem Preissegment.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Einsteiger -->
+      <div class="price-card reveal">
+        <div class="price-tier">Einsteiger</div>
+        <div class="price-name">Everyday Edit</div>
+        <div class="price-amount">
+          <span class="price-currency">ab</span>
+          <span class="price-number">49</span>
+          <span class="price-period">&nbsp;€</span>
+        </div>
+        <p class="price-desc muted">Stilvolle Alltagsbegleiter ohne Kompromisse — perfekt für den ersten Schritt in die Welt der kuratierten Taschen.</p>
+        <hr class="price-divider">
+        <ul class="price-features">
+          <li><span class="pf-check">✓</span> Trendige Modelle & Farben</li>
+          <li><span class="pf-check">✓</span> Vegane Materialien verfügbar</li>
+          <li><span class="pf-check">✓</span> Kostenloser Versand ab 69 €</li>
+          <li><span class="pf-check">✓</span> 30 Tage Rückgabe</li>
+          <li><span class="pf-check">✓</span> Standard-Verpackung</li>
+        </ul>
+        <a href="#" class="price-btn price-btn-outline">Jetzt entdecken</a>
+      </div>
+
+      <!-- Featured -->
+      <div class="price-card featured reveal">
+        <div class="featured-badge">★ BELIEBTESTE WAHL</div>
+        <div class="price-tier">Premium</div>
+        <div class="price-name">Signature Collection</div>
+        <div class="price-amount">
+          <span class="price-currency">ab</span>
+          <span class="price-number">149</span>
+          <span class="price-period">&nbsp;€</span>
+        </div>
+        <p class="price-desc">Kuratierte Designer-Stücke mit echtem Charakterstück-Potenzial. Die It-Bags der Saison für jede Gelegenheit.</p>
+        <hr class="price-divider">
+        <ul class="price-features">
+          <li><span class="pf-check">✓</span> Handverlesene It-Bag Modelle</li>
+          <li><span class="pf-check">✓</span> Premium-Materialien & Leder</li>
+          <li><span class="pf-check">✓</span> Priority-Versand kostenlos</li>
+          <li><span class="pf-check">✓</span> Premium Gift-Box Packaging</li>
+          <li><span class="pf-check">✓</span> Persönliche Stil-Beratung</li>
+          <li><span class="pf-check">✓</span> 60 Tage Rückgabe</li>
+        </ul>
+        <a href="#" class="price-btn price-btn-primary">Jetzt shoppen</a>
+      </div>
+
+      <!-- Luxe -->
+      <div class="price-card reveal">
+        <div class="price-tier">Luxe</div>
+        <div class="price-name">Investment Piece</div>
+        <div class="price-amount">
+          <span class="price-currency">ab</span>
+          <span class="price-number">349</span>
+          <span class="price-period">&nbsp;€</span>
+        </div>
+        <p class="price-desc muted">Zeitlose Stücke, die Saisons überdauern — für echte Liebhaberinnen, die in bleibende Qualität investieren.</p>
+        <hr class="price-divider">
+        <ul class="price-features">
+          <li><span class="pf-check">✓</span> Exklusive Designer-Kollektionen</li>
+          <li><span class="pf-check">✓</span> Echtleder &amp; rare Materialien</li>
+          <li><span class="pf-check">✓</span> White-Glove Lieferservice</li>
+          <li><span class="pf-check">✓</span> Luxus-Geschenkverpackung</li>
+          <li><span class="pf-check">✓</span> Dedizierte Stil-Beraterin</li>
+          <li><span class="pf-check">✓</span> Unbegrenzte Rückgabe</li>
+        </ul>
+        <a href="#" class="price-btn price-btn-outline">Luxe entdecken</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials-section" id="bewertungen">
+  <div class="container">
+    <div style="text-align:center; margin-bottom: 16px;">
+      <div class="section-label">Kundinnen-Stimmen</div>
+      <h2 class="section-title">Was unsere Community sagt</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Ich habe meinen Barrel Bag hier entdeckt — genau der Trend, den ich gesucht habe. Die Qualität ist absolut begeisternd und die Verpackung war wie ein kleines Geschenk an mich selbst."</p>
+        <div class="testi-author">
+          <div class="testi-avatar av-1">SK</div>
+          <div>
+            <div class="testi-name">Sarah K.</div>
+            <div class="testi-location">München</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Die persönliche Stil-Beratung hat mich wirklich überzeugt. Ich wusste nicht ob Tote oder Bucket Bag — nach 10 Minuten Chat hatte ich meine Antwort und meine neue Lieblingstüte!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar av-2">LM</div>
+          <div>
+            <div class="testi-name">Lena M.</div>
+            <div class="testi-location">Berlin</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Endlich ein Shop, der wirklich kuratiert und nicht einfach alles anbietet. Meine Cappuccino-Structured Bag ist mein absolutes Lieblingstück dieser Saison — vielen Dank!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar av-3">JW</div>
+          <div>
+            <div class="testi-name">Julia W.</div>
+            <div class="testi-location">Hamburg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="container">
+    <h2>Deine perfekte Tasche<br>wartet <em>schon auf dich.</em></h2>
+    <p>Entdecke jetzt über 500 handverlesene Modelle — für jeden Anlass, jede Persönlichkeit, jeden Stil.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn" style="background:var(--accent);">Kollektion entdecken →</a>
+      <a href="#" class="btn-ghost" style="border-color:rgba(255,255,255,0.3); color:white;">Stil-Beratung starten</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Meine<span>Tasche</span></div>
+        <p class="footer-tagline">Dein kuratierter Taschenshop für Frauen mit Stil und Anspruch. Von handverlesenen Alltagsbegleitern bis zu saisonalen It-Bags — immer am Puls der Zeit.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" title="Instagram">📸</a>
+          <a href="#" class="social-btn" title="Pinterest">📌</a>
+          <a href="#" class="social-btn" title="TikTok">🎵</a>
+          <a href="#" class="social-btn" title="Facebook">👍</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Neuheiten</a></li>
+          <li><a href="#">Bestseller</a></li>
+          <li><a href="#">Trends 2026</a></li>
+          <li><a href="#">Sale</a></li>
+          <li><a href="#">Geschenksets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kategorien</h4>
+        <ul>
+          <li><a href="#">Tote Bags</a></li>
+          <li><a href="#">Crossbody</a></li>
+          <li><a href="#">Clutches</a></li>
+          <li><a href="#">Rucksäcke</a></li>
+          <li><a href="#">Minibags</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service</h4>
+        <ul>
+          <li><a href="#">Stil-Beratung</a></li>
+          <li><a href="#">Versand &amp; Retoure</a></li>
+          <li><a href="#">Größentabelle</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MeineTasche. Alle Rechte vorbehalten.</span>
+      <div style="display:flex; gap:20px; flex-wrap:wrap;">
+        <a href="#">Datenschutz</a>
+        <a href="#">Impressum</a>
+        <a href="#">AGB</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Reveal on scroll — JS enhances visible-by-default content
+  const revealEls = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    // First, mark elements outside viewport as hidden
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('hidden');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach((el, i) => {
+      // Only hide if NOT already in viewport at load
+      const rect = el.getBoundingClientRect();
+      if (rect.top > window.innerHeight) {
+        el.classList.add('hidden');
+        // Stagger siblings in grid
+        el
