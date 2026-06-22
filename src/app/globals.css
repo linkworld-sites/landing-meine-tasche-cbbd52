@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* Post body */
+.post-body h1 { font-size: 2em; font-weight: 300; font-family: var(--font-cormorant, serif); margin: 1.6em 0 0.6em; }
+.post-body h2 { font-size: 1.5em; font-weight: 400; font-family: var(--font-cormorant, serif); margin: 1.6em 0 0.6em; }
+.post-body h3 { font-size: 1.2em; font-weight: 500; margin: 1.4em 0 0.5em; }
+.post-body p { margin: 1em 0; line-height: 1.85; }
+.post-body ul, .post-body ol { margin: 1em 0; padding-left: 1.5em; }
+.post-body ul { list-style: disc; }
+.post-body ol { list-style: decimal; }
+.post-body a { text-decoration: underline; color: #C9A96E; }
+.post-body blockquote { border-left: 2px solid #C9A96E; padding-left: 1.5em; color: #7B6E63; margin: 1.5em 0; font-style: italic; font-family: var(--font-cormorant, serif); font-size: 1.15em; }
+.post-body img { margin: 2em 0; max-width: 100%; }
+.post-body strong { font-weight: 600; }
+.post-body hr { border: none; border-top: 1px solid #E8DDD0; margin: 2em 0; }
