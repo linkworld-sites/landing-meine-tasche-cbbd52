@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { useCart } from "@/components/CartContext";
 
 const NAV_LINKS = [
   { label: "Kollektion", href: "/#kollektion" },
@@ -17,6 +18,7 @@ export function SiteNav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const { count } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -50,6 +52,7 @@ export function SiteNav() {
           {NAV_LINKS.map((link) => (
             <NavLink key={link.label} href={link.href} label={link.label} light={transparent} />
           ))}
+          <CartIcon count={count} light={transparent} />
         </nav>
 
         {/* Mobile hamburger */}
@@ -83,6 +86,18 @@ export function SiteNav() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/checkout"
+              className="flex items-center justify-between px-6 py-4 font-sans text-sm text-espresso hover:text-sand transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              <span>Warenkorb</span>
+              {count > 0 && (
+                <span className="bg-sand text-cream text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium">
+                  {count}
+                </span>
+              )}
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
@@ -107,5 +122,36 @@ function NavLink({ href, label, light }: { href: string; label: string; light: b
         style={{ width: "100%" }}
       />
     </Link>
+  );
+}
+
+function CartIcon({ count, light }: { count: number; light: boolean }) {
+  return (
+    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+      <Link
+        href="/checkout"
+        aria-label={`Warenkorb (${count} Artikel)`}
+        className={`relative flex items-center justify-center w-8 h-8 transition-colors ${
+          light ? "text-cream/90 hover:text-cream" : "text-espresso hover:text-sand"
+        }`}
+      >
+        {/* Bag icon */}
+        <svg width="18" height="20" viewBox="0 0 18 20" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M1 6h16l-1.5 12H2.5L1 6z" />
+          <path d="M6 6V4a3 3 0 0 1 6 0v2" />
+        </svg>
+        {count > 0 && (
+          <motion.span
+            key={count}
+            initial={{ scale: 0.6, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 18 }}
+            className="absolute -top-1 -right-1 bg-sand text-cream text-[10px] leading-none w-4 h-4 rounded-full flex items-center justify-center font-medium"
+          >
+            {count > 9 ? "9+" : count}
+          </motion.span>
+        )}
+      </Link>
+    </motion.div>
   );
 }
