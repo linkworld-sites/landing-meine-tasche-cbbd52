@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { SiteNav } from "@/components/SiteNav";
 import { HeroSection } from "@/components/HeroSection";
 import { FounderSection } from "@/components/FounderSection";
@@ -7,6 +8,12 @@ import { MaterialSection } from "@/components/MaterialSection";
 import { UnikateBanner } from "@/components/UnikateBanner";
 import { KontaktSection } from "@/components/KontaktSection";
 import { SiteFooter } from "@/components/SiteFooter";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   return (

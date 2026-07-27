@@ -6,6 +6,9 @@ import ShopWrapper from "./ShopWrapper";
 export const metadata = {
   title: "Kollektion — Meine Tasche",
   description: "Kuratierte Ledertaschen aus dem Berliner Atelier. Handgefertigt. Zeitlos.",
+  alternates: {
+    canonical: "/shop",
+  },
 };
 
 export default async function ShopPage() {

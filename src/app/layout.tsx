@@ -4,6 +4,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { FunnelTracker } from "@/components/FunnelTracker";
 import { CookieConsent } from "@/components/CookieConsent";
 import { CartProvider } from "@/components/CartContext";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -29,8 +30,29 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Meine Tasche — Atelier für handgefertigte Ledertaschen",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Meine Tasche — Atelier für handgefertigte Ledertaschen",
+    template: "%s — Meine Tasche",
+  },
   description: "Kuratierte Taschenmode, die Persönlichkeit und Trend vereint. Für jeden Anlass die perfekte Tasche — entworfen von Hand, gedacht für ein Leben.",
+  alternates: {
+    canonical: "/",
+  },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Meine Tasche",
+  url: SITE_URL,
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Meine Tasche",
+  url: SITE_URL,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -40,6 +62,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${cormorant.variable} ${cormorantSC.variable} ${dmSans.variable}`}
     >
       <body className="bg-cream text-espresso font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <FunnelTracker />
         <CartProvider>
           <SmoothScroll>{children}</SmoothScroll>

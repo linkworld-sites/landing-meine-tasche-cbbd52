@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getPost, getPosts } from "@/lib/posts";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   return getPosts().map((p) => ({ slug: p.slug }));
@@ -15,6 +16,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${post.title} — Meine Tasche Journal`,
     description: post.description,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
   };
 }
 
@@ -27,9 +31,22 @@ export default async function BlogPost({
   const post = getPost(slug);
   if (!post) notFound();
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date || undefined,
+    url: `${SITE_URL}/blog/${slug}`,
+  };
+
   return (
     <>
       <SiteNav />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <main className="min-h-screen bg-cream pt-28 pb-24 px-6 md:px-12">
         <div className="max-w-2xl mx-auto">
           <Link

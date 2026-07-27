@@ -9,6 +9,28 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
+const titles: Record<string, string> = {
+  impressum: "Impressum",
+  datenschutz: "Datenschutz",
+  cookies: "Cookies",
+  privacy: "Datenschutz",
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const title = titles[slug] ?? slug;
+  return {
+    title: `${title} — Meine Tasche`,
+    alternates: {
+      canonical: `/legal/${slug}`,
+    },
+  };
+}
+
 export default async function LegalPage({
   params,
 }: {
@@ -17,13 +39,6 @@ export default async function LegalPage({
   const { slug } = await params;
   const page = getLegalPage(slug);
   if (!page) notFound();
-
-  const titles: Record<string, string> = {
-    impressum: "Impressum",
-    datenschutz: "Datenschutz",
-    cookies: "Cookies",
-    privacy: "Datenschutz",
-  };
 
   return (
     <>

@@ -6,6 +6,9 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const metadata = {
   title: "Journal — Meine Tasche",
   description: "Geschichten aus dem Atelier — über Handwerk, Material und die Philosophie hinter jedem Stück.",
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default function BlogIndex() {
