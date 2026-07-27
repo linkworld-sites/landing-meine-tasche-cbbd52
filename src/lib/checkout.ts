@@ -26,7 +26,15 @@ export type CartItem = { product_id: string; quantity: number };
 export async function fetchProducts(): Promise<Product[]> {
   if (!COMPANY_ID) return [];
   try {
-    const r = await fetch(`${API}/api/companies/${COMPANY_ID}/products/public`);
+    // no-store: the catalog is LIVE data (name/price/image editable in the
+    // cockpit any time). Next.js App Router caches plain fetch() in server
+    // components AT BUILD TIME, so an agent-written server page (e.g.
+    // `const products = await fetchProducts()` in app/shop/page.tsx) baked a
+    // stale catalog into the prerender — catalog edits (surf shop product
+    // images, 2026-07-01) never appeared without a full rebuild. no-store
+    // opts that route into dynamic rendering; in client components it is a
+    // regular uncached fetch (harmless).
+    const r = await fetch(`${API}/api/companies/${COMPANY_ID}/products/public`, { cache: "no-store" });
     if (!r.ok) return [];
     const data = await r.json();
     return (data.products || []) as Product[];
