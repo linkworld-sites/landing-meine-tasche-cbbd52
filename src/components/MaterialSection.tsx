@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 
 const MATERIALS = [
@@ -108,6 +109,21 @@ export function MaterialSection() {
             <MaterialCard key={item.label} item={item} index={i} />
           ))}
         </div>
+
+        <motion.div
+          className="mt-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <Link
+            href="/blog/2026-07-28-meine-tasche-erfahrungen"
+            className="font-sans text-terre text-sm underline underline-offset-4 hover:text-espresso transition-colors"
+          >
+            Was Kundinnen über unsere handgefertigten Ledertaschen sagen →
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

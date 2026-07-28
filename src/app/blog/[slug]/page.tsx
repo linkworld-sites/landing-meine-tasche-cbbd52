@@ -4,6 +4,7 @@ import { getPost, getPosts } from "@/lib/posts";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SITE_URL } from "@/lib/site";
+import siteMeta from "../../../../content/site-meta.json";
 
 export function generateStaticParams() {
   return getPosts().map((p) => ({ slug: p.slug }));
@@ -40,6 +41,21 @@ export default async function BlogPost({
     url: `${SITE_URL}/blog/${slug}`,
   };
 
+  const faqJsonLd = post.faq
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: siteMeta.faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a,
+          },
+        })),
+      }
+    : null;
+
   return (
     <>
       <SiteNav />
@@ -47,6 +63,12 @@ export default async function BlogPost({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <main className="min-h-screen bg-cream pt-28 pb-24 px-6 md:px-12">
         <div className="max-w-2xl mx-auto">
           <Link
@@ -83,6 +105,26 @@ export default async function BlogPost({
             className="post-body text-espresso font-sans text-base"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
+
+          {post.faq && (
+            <section className="mt-16 pt-12 border-t border-linen">
+              <p className="font-cormorant-sc text-terre text-xs tracking-[0.3em] uppercase mb-6">
+                Häufige Fragen
+              </p>
+              <div className="space-y-8">
+                {siteMeta.faq.map((item) => (
+                  <div key={item.q}>
+                    <h3 className="font-cormorant text-espresso text-xl md:text-2xl font-medium leading-snug">
+                      {item.q}
+                    </h3>
+                    <p className="font-sans text-espresso/80 text-sm md:text-base leading-relaxed mt-2">
+                      {item.a}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       </main>
       <SiteFooter />

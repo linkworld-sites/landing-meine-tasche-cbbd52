@@ -105,3 +105,5 @@ Neben Bucket Bags, Minibags und Trendfarben zeigt sich 2026 noch ein vierter Tre
 Das Schöne an echten Materialien: Ein Trend, der 2026 aus vegetabil gegerbtem Leder entsteht, hört nicht auf, wenn die nächste Saison beginnt — er reift einfach weiter. Wenn du eines dieser Modelle in deiner eigenen Wunschfarbe oder Größe möchtest, entwerfen wir es gemeinsam im [persönlichen Co-Design](/#prozess) — ganz ohne Lagerbestand, dafür mit einem Stück, das wirklich nur einmal existiert.
 
 Die gesamte aktuelle Auswahl siehst du jederzeit in der [Kollektion](/shop).
+
+Wie sich unsere handgefertigten Unikate im Alltag bewähren, erzählen wir ausführlich in den [Erfahrungen unserer Kundinnen](/blog/2026-07-28-meine-tasche-erfahrungen).

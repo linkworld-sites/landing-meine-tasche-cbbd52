@@ -5,6 +5,7 @@ import { FunnelTracker } from "@/components/FunnelTracker";
 import { CookieConsent } from "@/components/CookieConsent";
 import { CartProvider } from "@/components/CartContext";
 import { SITE_URL } from "@/lib/site";
+import siteMeta from "../../content/site-meta.json";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -39,13 +40,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: "WlJ66mw7eszwjs5WXh-HAJ_3n22gXQA1yf23ABf0enE",
+  },
 };
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Meine Tasche",
-  url: SITE_URL,
+  name: siteMeta.organization.name,
+  url: siteMeta.organization.url,
 };
 
 const websiteJsonLd = {

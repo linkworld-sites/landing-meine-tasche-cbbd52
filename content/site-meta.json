@@ -1,0 +1,28 @@
+{
+  "organization": {
+    "name": "Meine Tasche",
+    "url": "https://f0e7bbfb.run.linkworld.ai"
+  },
+  "faq": [
+    {
+      "q": "Wie langlebig ist Sattlerstich im Vergleich zu Maschinennaht?",
+      "a": "Der Sattlerstich ist eine jahrhundertealte Handstich-Technik, bei der zwei Nadeln denselben Faden von beiden Seiten durch das Leder führen. Reißt eine Naht an einer Stelle, hält der Rest trotzdem — bei einer Maschinennaht mit nur einem Faden löst sich meist die ganze Reihe. Deshalb hält Sattlerstich erfahrungsgemäß länger als jede Maschinennaht, gerade an stark beanspruchten Stellen wie Henkeln und Riemen."
+    },
+    {
+      "q": "Wie funktioniert der Co-Design-Prozess?",
+      "a": "Der Co-Design-Prozess beginnt mit einem persönlichen Gespräch mit der Gründerin — über Anlass, gewünschte Größe, Lederart und Details. Aus diesem Dialog entsteht eine Tasche, die genau zu dir passt. Da ohne Lagerbestand gearbeitet wird, entsteht jedes Stück erst nach diesem Austausch, als echtes Unikat."
+    },
+    {
+      "q": "Woher kommt das Leder?",
+      "a": "Wir arbeiten ausschließlich mit vegetabil gegerbtem Leder aus kleinen europäischen Gerbereien. Diese Gerbereien verzichten auf schnelle, industrielle Verfahren zugunsten traditioneller, langsamer Gerbung — das Ergebnis ist ein Material, das mit der Zeit reift und jede Gebrauchsspur zu einem Teil seiner Geschichte macht."
+    },
+    {
+      "q": "Warum gibt es keine zwei identischen Taschen von Meine Tasche?",
+      "a": "Wir fertigen ohne Lagerbestand — jede Tasche entsteht erst nach der Bestellung, in Handarbeit in unserem Berliner Atelier. Das macht jedes Stück zu einem echten Unikat statt zu einem von tausend gleichen Exemplaren."
+    },
+    {
+      "q": "Was macht die Messingbeschläge besonders?",
+      "a": "Unsere Messingbeschläge werden in kleinen Chargen gefertigt statt standardisiert zugekauft. Mit der Zeit patinieren sie zu einem warmen, lebendigen Gold — ein Detail, das bei massengefertigten Beschlägen so nicht entsteht."
+    }
+  ]
+}
